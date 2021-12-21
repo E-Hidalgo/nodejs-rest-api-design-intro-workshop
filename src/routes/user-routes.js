@@ -1,9 +1,12 @@
 const Router = require("express").Router;
 
 const userController = require("../controllers/user-controller");
+const authMiddleware = require("../middleware/auth-middleware")
 
 const UserRouter = Router();
 
+// .use to make it general
+UserRouter.use(authMiddleware)
 UserRouter.get("/", userController.getUsers);
 UserRouter.get("/:userId", userController.getUserDetails);
 UserRouter.post("/", userController.createUser);
